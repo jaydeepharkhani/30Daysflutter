@@ -2,7 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/Utility/routes.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class LoginPage1 extends StatelessWidget {
+class LoginPage extends StatefulWidget {
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  String name = "";
+  bool blnChangebutton = false;
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -17,7 +24,7 @@ class LoginPage1 extends StatelessWidget {
             height: 20,
           ),
           Text(
-            "Welcome",
+            "Welcome $name",
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
@@ -35,6 +42,10 @@ class LoginPage1 extends StatelessWidget {
                     hintText: "Enter User Name",
                     labelText: "User Name",
                   ),
+                  onChanged: (value) {
+                    name = value;
+                    setState(() {});
+                  },
                 ),
                 TextFormField(
                   obscureText: true,
@@ -50,13 +61,39 @@ class LoginPage1 extends StatelessWidget {
                 SizedBox(
                   height: 40,
                 ),
-                ElevatedButton(
-                    child: Text("Login"),
-                    style: TextButton.styleFrom(minimumSize: Size(150, 40)),
-                    onPressed: () {
-                      // print("Hello Login Form");
-                      Navigator.pushNamed(context, Myroutes.homeRoute);
-                    })
+                InkWell(
+                  onTap: () async {
+                    setState(() {
+                      blnChangebutton = true;
+                    });
+                    await Future.delayed(Duration(seconds: 1));
+                    Navigator.pushNamed(context, "/homescreen");
+                  },
+                  child: AnimatedContainer(
+                    duration: Duration(seconds: 1),
+                    width: blnChangebutton ? 50 : 100,
+                    height: 30,
+                    // color: Colors.orange,
+                    alignment: Alignment.center,
+                    child: blnChangebutton
+                        ? Icon(Icons.done, color: Colors.white)
+                        : Text(
+                            "Login",
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 15,
+                            ),
+                          ),
+                    decoration: BoxDecoration(
+                      color: Color.fromARGB(255, 38, 128, 231),
+                      // shape: blnChangebutton
+                      //     ? BoxShape.circle
+                      //     : BoxShape.rectangle,
+                      // borderRadius: BorderRadius.circular(5)
+                    ),
+                  ),
+                )
               ],
             ),
           )

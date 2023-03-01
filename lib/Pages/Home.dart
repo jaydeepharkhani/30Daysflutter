@@ -1,14 +1,6 @@
 import "package:flutter/material.dart";
 
 class Homepage extends StatelessWidget {
-  void onsendbuttonPress() {
-    print("Send Button Press");
-  }
-
-  void onSearchbuttonPress() {
-    print("Search Button Press");
-  }
-
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
