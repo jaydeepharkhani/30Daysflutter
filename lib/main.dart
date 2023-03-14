@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 void main() {
   runApp(MaterialApp(
     title: "sampleapp",
-    initialRoute: '/',
+    initialRoute: '/homescreen',
     routes: {
       "/": (context) => LoginPage(),
       "/homescreen": (context) => Homepage(),
@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.deepPurple,
         fontFamily: GoogleFonts.lato().fontFamily,
       ),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
